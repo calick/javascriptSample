@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<link rel="stylesheet" href="./css/1.css" type="text/css">
+	</head>
+	<body>
+		<input type="button" value="save" id="saveButton" /><br>
+		<input type="button" value="toCanvas" id="toCanvas" onclick="toCanvas()" /><br>
+			
+		<canvas id="tutorial" width="400" height="300"></canvas>
+
+
+		<!-- svg標準 -->
+		<div width="400" height="400" class="test1">
+			<!-- svgにhiddenをつけるとcanvasへの出力ができなくなる -->
+			<svg id="mysvg0" 
+				version="1.1" xmlns="http://www.w3.org/2000/svg"
+				width="400" height="400">
+				<rect width="100%" height="100%" fill="red"></rect>
+				<polygon id="logomark-polyline" fill-rule="evenodd" clip-rule="evenodd" fill="#0CB9C7" points="128.25,26 147.19,96.69 95.44,148.44 24.75,129.5 5.81,58.81 57.56,7.06 "/>
+				<circle cx="150" cy="100" r="80" fill="green"></circle>
+				<text x="150" y="125" font-size="32" text-anchor="middle" fill="white">えすぶいじー</text>
+				<circle cx="250" cy="300" r="80" fill="blue"></circle>
+			</svg>
+		</div>
+
+		<div width="400" height="400" class="test2">
+			<svg id="mysvg00"
+				version="1.1" xmlns="http://www.w3.org/2000/svg"
+				width="400" height="400">
+				<rect width="100%" height="100%" fill="black"></rect>
+				<polygon id="logomark-polyline" fill-rule="evenodd" clip-rule="evenodd" fill="#0CB9C7" points="128.25,26 147.19,96.69 95.44,148.44 24.75,129.5 5.81,58.81 57.56,7.06 "/>
+				<circle cx="150" cy="100" r="80" fill="bule"></circle>
+				<text x="150" y="125" font-size="32" text-anchor="middle" fill="white">えすぶいじー</text>
+				<circle cx="250" cy="300" r="80" fill="yellow"></circle>
+			</svg>
+		</div>
+
+		<!-- ｓｖｇ入れ子 -->
+		<svg id="mysvg1"
+			width="300"
+			height="300"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			version="1.1">
+			<svg width="150" height="150" x="150" y="150">
+				<rect width="150" height="150" fill="#e5000d" />
+			</svg>
+			<svg width="150" height="150">
+				<rect width="150" height="150" fill="#0091e5" />
+			</svg>
+		</svg>
+
+		<!-- SVG path -->
+		<svg id="mysvg2" x="0px" y="0px" width="200px" height="200px" viewBox="0 0 300 300" enable-background="new 0 0 155 155">
+			<path d="M 100 100 L 300 100 L 200 300 z"
+			fill="red" stroke="blue" stroke-width="3" />
+		</svg>
+
+
+
+
+		<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script> 
+		<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+		<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script> 
+		<script type="text/javascript" src="./js/svg2png1.js" charset="utf-8"></script>
+
+	</body>
+</html>
