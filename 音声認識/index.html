@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charstet="utf-8">
+    <title>web speech api</title>
+</head>
+<body>
+    <memo>
+        ※現段階で完全に動作するのはchromeのみ<br>
+        音声合成：Web Speech Synthesis API<br>
+        音声認識：Web Speech Recognition API<br>
+        
+    </memo>
+    <br>
+    <button id="button_speech_recognition">音声認識(bg_color)</button>
+    <br>
+    <button id="button_speech_recognition_text">音声認識(テキスト)</button>
+    <br>
+    <input id="text_speech_recognition" class="text" value=""/>
+    <br>
+    <br>
+    <input id="text_speech_synthesis" class="text" value="hello"/>
+    <br>
+    <button id="button_speech_synthesis_us">音声合成(English)</button>
+    <button id="button_speech_synthesis_jp">音声合成(Japanese)</button>
+    <script>
+    'use strict';
+
+    {
+        const btn_speech_recognition = document.getElementById('button_speech_recognition');
+        const btn_speech_recognition_text = document.getElementById('button_speech_recognition_text');
+        const btn_speech_synthesis_us = document.getElementById('button_speech_synthesis_us');
+        const btn_speech_synthesis_jp = document.getElementById('button_speech_synthesis_jp');
+        
+        // 音声認識（色）
+        const speech = new webkitSpeechRecognition();
+        // speech.lang = 'ja-JP';
+        speech.lang = 'en-US';
+
+        btn_speech_recognition.addEventListener('click', () => {
+            // ボタンの二度押し防止のため押せないようにする
+            btn_speech_recognition.disabled = true;
+
+            speech.start();
+        });
+
+        speech.onresult = (e) => {
+            console.log(e);
+            speech.stop();
+
+            if(e.results[0].isFinal){
+                console.log(e.results[0][0].transcript);
+                document.body.style.background = e.results[0][0].transcript;
+            }
+        };
+
+        speech.onend = () => {
+            speech.start();
+        };
+
+        speech.onsoundstart = () => {
+            btn_speech_recognition.textContent = 'Processing...';
+        };
+
+        speech.onsoundend = () => {
+            btn_speech_recognition.textContent = 'Waiting...';
+        };
+
+        // 音声認識（日本語出力）
+        const speech_text = new webkitSpeechRecognition();
+        speech_text.lang = 'ja-JP';
+        btn_speech_recognition_text.addEventListener('click', () => {
+            speech_text.start();
+        });
+
+        speech_text.onresult = (e) => {
+            speech.stop();
+            
+            // 取得した音を日本語でテキスト表示
+            if(e.results[0].isFinal){
+                console.log(e.results[0][0].transcript);
+                document.getElementById('text_speech_recognition').value = e.results[0][0].transcript;
+            }
+        };
+
+        // 音声合成
+        const utterance = new SpeechSynthesisUtterance();
+        const voices = window.speechSynthesis.getVoices();
+        console.log(speechSynthesis);
+        
+        btn_speech_synthesis_us.addEventListener('click', () => {
+            utterance.lang = 'en-US';
+            utterance.text = document.getElementById('text_speech_synthesis').value;;
+            speechSynthesis.speak(utterance);
+        });
+        btn_speech_synthesis_jp.addEventListener('click', () => {
+            console.log(voices);
+            utterance.lang = 'ja-JP';
+            utterance.text = document.getElementById('text_speech_synthesis').value;
+            speechSynthesis.speak(utterance);
+        });
+
+    }
+    </script>
+</body>
+</html>
