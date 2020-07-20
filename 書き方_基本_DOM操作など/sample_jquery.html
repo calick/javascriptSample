@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="shift-jis">
+	<title>jquery入門</title>
+</head>
+<body>
+	<h4>-6 next is 7-</h4>
+	<p>jquery入門 dotinstall</p>
+	<p>https://dotinstall.com/lessons/basic_jquery_v2</p>
+	<p>公式サイト：https://jquery.com/</p>
+
+	<p>jqueryはセレクタでDOM要素を指定→メソッドで処理が基本となる。</p>
+	<p>$(セレクタ).(メソッド).(メソッド);</p>
+	<p>ex. $("p").css("color","red");</p>
+
+	<div>Hello World!</div>
+	
+	<ul id="main">
+		<li>1</li>
+		<li class="item1">2</li>
+		<li class="item2">3</li>
+		<li class="item3">4</li>
+		<li class="item4">5</li>
+		<li class="item5">6
+			<ul id="sub">
+				<li class="item1">4-1</li>
+				<li class="item2">4-2</li>
+				<li class="item3">4-3</li>
+				<li class="item4">4-4</li>
+				<li class="item5">4-5</li>
+				<li class="item6">4-6</li>
+				<li class="item6">4-7</li>
+				<li>4-8</li>
+				<li>4-9</li>
+				<li>4-10</li>
+				<li>4-11</li>
+				<li>
+					4-12
+					<ul id="subsub">
+						<li>subsub
+							<ul id="subsubsub">
+								<li>subsubsub</li>
+							</ul>
+						</li>
+						<li>4-12-1</li>
+						<li>4-12-2</li>
+						<li>4-12-3</li>
+						<li>4-12-4</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- body閉じタグの直前で読み込み -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!-- jqueryを読み込んだ後scriptを記載 -->
+	<script>
+		// $(document).ready(function(){
+		// });
+		// これを省略すると
+		// $(function(){
+		// });
+		
+		// それぞれ記載してもいいし、複数記載してもいい
+		// セレクタ・メソッド
+		$(function(){
+			// 要素指定
+			$("div").css("color","red");
+		});
+		$(function(){
+			// id指定
+			$("#sub").css("color","blue");
+			// クラスを指定
+			$(".item1").css("color","green");
+			// > 直下の子要素
+			// mainの直下のitem class
+			$("#main > .item3").css("color","yellow");
+			// 「 」 それ以下の要素
+			$("#main .item4").css("color","silver");
+			// , 複数の要素
+			$(".item5,.item6").css("color","olive");
+			// 隣接する要素
+			$(".item6 + .item6").css("color","orange");
+			// フィルタ
+			$("#sub > li:eq(7)").css("color","chocolate");
+			$("#sub > li:gt(10)").css("color","darkmagenta");
+			$("#sub > li:contains(9)").css("color","crimson");
+		});
+		
+		// メソッドを使ったDOM要素の指定
+		// 親要素
+		//$("#subsubsub").parent().css("color","deeppink");
+		$("#subsubsub").children().css("color","gold");
+		$("#subsub > li:eq(2)").prev().css("color","deeppink");
+		$("#subsub > li:eq(2)").next().css("color","deeppink");
+		
+		
+	</script>
+</body>
+</html>

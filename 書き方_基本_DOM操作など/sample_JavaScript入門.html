@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="shift-jis">
+	<title>JavaScript-sample(dotinstall)</title>
+</head>
+<body>
+	<h4>JavaScript入門</h4>
+	<a>https://dotinstall.com/lessons/basic_javascript_v2</a>
+	<p id="msg">Hello World</p>
+	<button id="add">click</button>
+
+	<!-- JSをHTMLに直接記載 -->
+	<script>
+		/***********
+		 * 文字列
+		 ***********/ 
+		var msg1 = "hello world";
+		var msg2 = 'it\'s a pen.';
+		console.log(msg1 + "\n" + msg2);
+		
+		/***********
+		 * 数値計算
+		 ***********/ 
+		var num = 1;
+		num += 1;
+		num *= 10;
+		num++;
+		console.log(num);
+		
+		/***********
+		 * 条件分岐
+		 ***********/ 
+		var score = 80;
+		if(score >= 80){
+			console.log("ok");
+		} else {
+			console.log("ng");
+		}
+
+		/***********
+		 * 真偽値
+		 * 文字列：空文字以外ならtrue
+		 * 数値：0かNaN意外だったらtrue
+		 * true / false：
+		 * object：null以外だったらtrue
+		 * undifined,null：false
+		 ***********/ 
+
+		/***********
+		 * 三項演算子
+		 ***********/ 
+		 var max;
+		 var a = 1;
+		 var b = 2;
+		 if(a>b){
+		 	max = a;
+		 }else{
+		 	max = b;
+		 }
+		 console.log("max value is " + max);
+
+		 a=4;
+		 b=3;
+		/* 上のif文と同じ */
+		 max = (a>b) ? a : b;
+		 console.log("max value is " + max);
+
+		/***********
+		 * switch文
+		 ***********/ 
+		 var signal = "blue";
+		 switch (signal) {
+		 	case "red":
+		 		console.log("stop");
+		 		break;
+		 	case "green":
+		 	case "blue":
+		 		console.log("go");
+		 		break;
+		 	case "yellow":
+		 		console.log("slow down");
+		 		break;
+		 	default:
+		 		console.log("wrong signal");
+		 		break;
+		 }
+
+		/*************
+		 * ループ処理
+		 * break:ループを抜ける
+		 * continue:ループを一度スキップ
+		 *************/
+		 // while文
+		 var i = 0;
+		 while(i < 3){
+		 	console.log(i);
+		 	i++;
+		 }
+		 
+		 // do ... while
+		 // 後判定なので処理が必ず1回実行される
+		 do {
+		 	console.log(i);
+		 	i++;
+		 } while(i<6);
+
+		 // for
+		 for (var i=6;i<9;i++){
+		 	console.log(i);
+		 }
+
+		/***********
+		 * alert
+		 ***********/ 
+		 // alert("Hello");
+
+		/***********
+		 * confirm
+		 * ex. 削除処理とかで確認画面で利用
+		 ***********/ 
+		 // var answer = confirm("Are you sure?");
+		 // console.log(answer);
+
+		/***********
+		 * prompt
+		 ***********/ 
+		 // var name = prompt("お名前は？","default");
+		 // console.log(name);
+
+		/***********
+		 * 関数
+		 ***********/
+		 // 関数（返り値なし）
+		 function hello(name){
+		 	console.log("Hello " + name);
+		 }
+		 hello("Tom");
+		 // 無名関数（返り値あり）
+		 var hi = function(name){
+		 	return "Hi " + name;
+		 }
+		 console.log(hi("Bob"));
+		 // 即時関数
+		 (function ya(name){
+		 	console.log("Ya " + name);
+		 })("Jun");
+
+		/*****************
+		 * タイマー処理
+		 * setInterval:前の処理が終了したことを考慮しない。ブラウザクラッシュしないように注意。
+		 * setTimeout:前の処理が終わったかどうかを考慮する
+		 *****************/
+		 var i = 0;
+		 function show(){
+		 	console.log(i++);
+			var tid = setTimeout(function(){
+		 		show();
+		 	},1000);
+			if(i > 3){
+				clearTimeout(tid);
+			}
+		 }
+		 show();
+		 
+		/***********
+		 * 配列
+		 ***********/
+		 var score = [100,"test",[100,200,300]];
+		 console.log(score[0]);
+		 console.log(score[1]);
+		 console.log(score[2]);
+		 console.log(score[2][1]);
+
+		/**************
+		 * オブジェクト
+		 **************/
+		var user = {
+			user_name:"tom",
+			tel:"080-xxxx-xxxx",
+			email:"tom@gmail.com",
+			greet: function(){
+				console.log("hello " + this.user_name);
+			}
+		};
+		console.log(user["tel"]);
+		console.log(user.email);
+		user.greet();
+
+		// 組み込みオブジェクト
+		//// String
+		var s = new String("tom");
+		console.log(s.length);
+		console.log(s.replace("t","T"));
+		
+		//// Array
+		var a = new Array(100,200);
+		console.log(a)
+		console.log(a.length);
+		a.push(500)
+		console.log(a)
+		a.unshift(0)
+		console.log(a)
+		
+		//// Math
+		console.log(Math.PI);
+		console.log(Math.ceil(5.3));//切り上げ
+		console.log(Math.floor(5.3));//切り捨て
+		console.log(Math.round(5.3));//四捨五入
+		console.log(Math.random());
+		
+		//// Date
+		var d1 = new Date();
+		var d2 = new Date(2015,1,11,1,20,20);
+		console.log(d1);
+		console.log(d2);
+		console.log(d1.getFullYear());
+		console.log(d1.getTime()); // 1970/1/1 からの経過ミリ秒
+		
+
+		/********************
+		 * Windowオブジェクト
+		 * DOM操作等
+		 ********************/
+		console.dir(window);
+		console.log(window.outerHeight);
+		// window.location.href = 'http://google.com';//これで遷移すると戻るボタンが使えない？！
+		// document object model (DOM)
+
+		// 既存のエレメントを操作
+		var e = document.getElementById("msg");
+		e.textContent = "Hello World!!!";
+		e.style.color = "red";
+		e.className = "myStyle";
+		// 新規作成
+		var greet = document.createElement("p"),
+		text = document.createTextNode("Hey");;
+		document.body.appendChild(greet).appendChild(text);
+
+		/********************
+		 * イベント設定
+		 ********************/
+		 document.getElementById("add").addEventListener("click", function(){
+			var greet = document.createElement("p"),
+			text = document.createTextNode("Hey");;
+			document.body.appendChild(greet).appendChild(text);
+		 });
+
+
+	</script>
+</body>
+</html>
