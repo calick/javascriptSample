@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title><%= title %></title>
+</head>
+<body>
+  <ul>
+      <!-- サーバーサイドで処理を繰り返してHTMLタグを複数回出力する -->
+      <% for(var i = 0; i < 3; i++){ %>
+    <li><%= i %></li>
+    <% } %>
+  </ul>
+  <%- contents1 %>
+  <%= contents2 %>
+  <ol>  
+    <!-- サーバーサイド(index.js)で用意した配列を繰り返し出力 -->
+    <% arr.forEach(function(val) { %>
+    <li><%= val %></li>
+    <% }) %>
+  </ol>
+</body>
+</html>
